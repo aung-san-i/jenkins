@@ -13,6 +13,8 @@ node('ra-skx-32') {
           echo "env.BUILD_NUMBER: ${env.BUILD_NUMBER}" 
         }
         
+        echo "env.BRANCH_NAME: ${env.BRANCH_NAME}"
+        
         def container_name = null
         if (env.CHANGE_ID && env.BUILD_NUMBER) {
           container_name = "nnpi-transformer__${env.CHANGE_ID}__${env.BUILD_NUMBER}"
@@ -20,9 +22,9 @@ node('ra-skx-32') {
           container_name = "master_" + new Date().getTime().toString()
         }
         echo "container_name ${container_name}"
+        echo "env.TAG_NAME: ${env.TAG_NAME}"
         
-        echo "env.tag: ${env.tag}" 
-        echo "tag: ${tag}" 
+        echo "env.tag: ${env.tag}"
         
         sh 'pwd && ls -la'
         //deleteDir()
